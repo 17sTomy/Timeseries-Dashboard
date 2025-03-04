@@ -17,7 +17,7 @@ const PlotsPage: React.FC = () => {
           ...prev,
           [asset]: [
             ...(prev[asset] || []), 
-            { timestamp: Date.now(), price: data[asset].Last }
+            { timestamp: Date.now(), price: data[asset].last }
           ].slice(-50),
         }));
       }
