@@ -1,6 +1,6 @@
 # Timeseries Dashboard
 
-![Timeseries Dashboard](src/public/preview.gif)
+![Timeseries Dashboard](public/preview.gif)
 
 A real-time timeseries dashboard with a FastAPI backend and a React + TypeScript frontend.
 
