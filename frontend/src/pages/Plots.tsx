@@ -5,7 +5,6 @@ import Plot from '../components/Plot';
 const PlotsPage: React.FC = () => {
   const WEBSOCKET_URL = import.meta.env.VITE_WEBSOCKET_URL;
   const data = useWebSocket(WEBSOCKET_URL);
-  console.log(data);
   
   const ASSETS = ['WTI', 'SOY', 'YPF', 'SP500'];
   const [priceHistory, setPriceHistory] = useState<Record<string, { timestamp: number; price: number }[]>>({});
