@@ -44,5 +44,5 @@ cd frontend
 ``` 
 4️⃣ Start the frontend server:
 ```sh
-  unpm run dev
+  npm run dev
 ``` 
