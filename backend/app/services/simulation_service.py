@@ -1,8 +1,9 @@
-from fastapi import WebSocket
+import datetime
 import asyncio
 import numpy as np
-import datetime
+from fastapi import WebSocket
 from app.schemas.price_schemas import PriceData
+from app.utils.simulation_utils import round_by_spread
 
 dt = 1 / 252
 assets = {
@@ -22,14 +23,12 @@ async def simulate_prices(websocket: WebSocket):
             epsilon = np.random.normal(0, 1)
             new_price = last_prices[asset] * (1 + mu * dt + volatility * np.sqrt(dt) * epsilon)
 
-            spread_str = str(spread)
-            decimal_places = len(spread_str.split(".")[1]) if '.' in spread_str else 2
-            new_price = round(new_price, decimal_places)
+            new_price = round_by_spread(new_price, spread)
 
             price_data = PriceData(
                 asset=asset,
-                bid=new_price - spread,
-                ask=new_price + spread,
+                bid=round_by_spread(new_price - spread, spread),
+                ask=round_by_spread(new_price + spread, spread),
                 last=new_price,
                 timestamp=datetime.datetime.utcnow().isoformat()
             )
@@ -38,6 +37,7 @@ async def simulate_prices(websocket: WebSocket):
                 "asset": asset,
                 "data": price_data.dict()
             })
+            
             last_prices[asset] = new_price
 
         await asyncio.sleep(0.2)
