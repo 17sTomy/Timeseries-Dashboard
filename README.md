@@ -8,7 +8,27 @@ A real-time timeseries dashboard with a FastAPI backend and a React + TypeScript
 
 ## 🚀 How to run
 
-### Backend (FastAPI)
+### Run with Docker (Recommended)
+
+1️⃣ Build and start the containers:
+```sh
+  docker-compose up -d --build
+```
+
+2️⃣ Access the application:
+- **Backend**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- **Frontend**: [http://localhost](http://localhost)
+
+To stop the containers, run:
+```sh
+  docker-compose down
+```
+
+---
+
+### Run manually
+
+#### Backend (FastAPI)
 
 1️⃣ Navigate to the backend folder:
 ```sh
@@ -28,7 +48,7 @@ A real-time timeseries dashboard with a FastAPI backend and a React + TypeScript
   uvicorn main:app --reload
 ``` 
 
-### Frontend (React + TypeScript)
+#### Frontend (React + TypeScript)
 
 1️⃣ Navigate to the frontend folder:
 ```sh
@@ -44,5 +64,5 @@ cd frontend
 ``` 
 4️⃣ Start the frontend server:
 ```sh
-  unpm run dev
+  npm run dev
 ``` 
